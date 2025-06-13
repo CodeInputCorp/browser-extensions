@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"esModuleInterop": true,
+		"strict": true,
+		"sourceMap": true,
+		"outDir": "./dist",
+		"types": [
+			"chrome"
+		]
+	},
+	"include": [
+		"src/**/*.ts"
+	]
+}
