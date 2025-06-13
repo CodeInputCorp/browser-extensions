@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
-import { 
-  Button, 
-  TextInput, 
-  PasswordInput,
-  Tile,
-  Stack,
-  Heading,
-  Theme
-} from '@carbon/react';
-import { LogoGithub } from '@carbon/icons-react';
+import { Theme } from '@carbon/react';
+import LoginForm from './login/LoginForm';
+import Dashboard from './dashboard/Dashboard';
 import '@carbon/styles/css/styles.css';
 import './popup.scss';
 
@@ -53,12 +46,10 @@ const LoginPopup: React.FC = () => {
   };
 
   const handleEmailLogin = () => {
-    // Placeholder: simulate successful login
     setLoginState(prev => ({ ...prev, isLoggedIn: true }));
   };
 
   const handleGitHubLogin = () => {
-    // Placeholder: simulate successful login
     setLoginState(prev => ({ ...prev, isLoggedIn: true }));
   };
 
@@ -70,15 +61,7 @@ const LoginPopup: React.FC = () => {
     return (
       <Theme theme={theme}>
         <div className="popup-container">
-          <Tile className="success-tile">
-            <Stack gap={4}>
-              <Heading size="lg">Welcome!</Heading>
-              <p>You are successfully logged in.</p>
-              <Button kind="secondary" onClick={handleLogout}>
-                Logout
-              </Button>
-            </Stack>
-          </Tile>
+          <Dashboard onLogout={handleLogout} />
         </div>
       </Theme>
     );
@@ -87,51 +70,14 @@ const LoginPopup: React.FC = () => {
   return (
     <Theme theme={theme}>
       <div className="popup-container">
-        <Tile className="login-tile">
-          <Stack gap={6}>
-            <Heading size="lg">Code Input</Heading>
-            
-            <Button
-              kind="primary"
-              renderIcon={LogoGithub}
-              onClick={handleGitHubLogin}
-              size="lg"
-            >
-              Continue with GitHub
-            </Button>
-
-            <div className="divider">
-              <span>or</span>
-            </div>
-
-            <Stack gap={4}>
-              <TextInput
-                id="email"
-                labelText="Email"
-                placeholder="Enter your email"
-                value={loginState.email}
-                onChange={handleEmailChange}
-              />
-              
-              <PasswordInput
-                id="password"
-                labelText="Password"
-                placeholder="Enter your password"
-                value={loginState.password}
-                onChange={handlePasswordChange}
-              />
-              
-              <Button
-                kind="secondary"
-                onClick={handleEmailLogin}
-                disabled={!loginState.email || !loginState.password}
-                size="lg"
-              >
-                Sign In
-              </Button>
-            </Stack>
-          </Stack>
-        </Tile>
+        <LoginForm
+          email={loginState.email}
+          password={loginState.password}
+          onEmailChange={handleEmailChange}
+          onPasswordChange={handlePasswordChange}
+          onEmailLogin={handleEmailLogin}
+          onGitHubLogin={handleGitHubLogin}
+        />
       </div>
     </Theme>
   );
