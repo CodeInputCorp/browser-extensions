@@ -1,0 +1,44 @@
+.dashboard {
+  width: 100%;
+  min-height: 400px;
+  
+  .header {
+    padding: 24px 0 16px 0;
+    border-bottom: 1px solid var(--cds-border-subtle);
+    margin-bottom: 24px;
+    
+    .welcomeText {
+      margin: 8px 0 0 0;
+      color: var(--cds-text-secondary);
+      font-size: 14px;
+    }
+  }
+  
+  .menuList {
+    .menuItem {
+      width: 100%;
+      margin-bottom: 8px;
+      
+      &:hover {
+        background-color: var(--cds-background-hover);
+      }
+      
+      &.logoutButton {
+        margin-top: 24px;
+        border-top: 1px solid var(--cds-border-subtle);
+        padding-top: 16px;
+      }
+    }
+  }
+  
+  .footer {
+    margin-top: auto;
+    padding-top: 24px;
+    text-align: center;
+    
+    .version {
+      color: var(--cds-text-secondary);
+      font-size: 12px;
+    }
+  }
+}

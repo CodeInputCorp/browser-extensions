@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   TextInput,
@@ -14,26 +14,29 @@ import {
 import { LogoGithub } from "@carbon/icons-react";
 
 interface LoginFormProps {
-  email: string;
-  password: string;
-  onEmailChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onPasswordChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onEmailLogin: () => void;
+  onEmailLogin: (email: string, password: string) => void;
   onGitHubLogin: () => void;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({
-  email,
-  password,
-  onEmailChange,
-  onPasswordChange,
   onEmailLogin,
   onGitHubLogin,
 }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (email && password) {
-      onEmailLogin();
+      onEmailLogin(email, password);
     }
   };
 
@@ -64,7 +67,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
                   labelText="Email"
                   placeholder="Enter your email"
                   value={email}
-                  onChange={onEmailChange}
+                  onChange={handleEmailChange}
                   type="email"
                   required
                 />
@@ -74,7 +77,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
                   labelText="Password"
                   placeholder="Enter your password"
                   value={password}
-                  onChange={onPasswordChange}
+                  onChange={handlePasswordChange}
                   required
                 />
 

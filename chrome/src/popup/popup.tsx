@@ -6,19 +6,8 @@ import Dashboard from './dashboard/Dashboard';
 import '@carbon/styles/css/styles.css';
 import './popup.scss';
 
-interface LoginState {
-  email: string;
-  password: string;
-  isLoggedIn: boolean;
-}
-
 const LoginPopup: React.FC = () => {
-  const [loginState, setLoginState] = useState<LoginState>({
-    email: '',
-    password: '',
-    isLoggedIn: false
-  });
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [theme, setTheme] = useState<'white' | 'g10' | 'g90' | 'g100'>('white');
 
   useEffect(() => {
@@ -37,27 +26,21 @@ const LoginPopup: React.FC = () => {
     };
   }, []);
 
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginState(prev => ({ ...prev, email: event.target.value }));
-  };
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginState(prev => ({ ...prev, password: event.target.value }));
-  };
-
-  const handleEmailLogin = () => {
-    setLoginState(prev => ({ ...prev, isLoggedIn: true }));
+  const handleEmailLogin = (email: string, password: string) => {
+    console.log('Email login:', email);
+    setIsLoggedIn(true);
   };
 
   const handleGitHubLogin = () => {
-    setLoginState(prev => ({ ...prev, isLoggedIn: true }));
+    console.log('GitHub login');
+    setIsLoggedIn(true);
   };
 
   const handleLogout = () => {
-    setLoginState({ email: '', password: '', isLoggedIn: false });
+    setIsLoggedIn(false);
   };
 
-  if (loginState.isLoggedIn) {
+  if (isLoggedIn) {
     return (
       <Theme theme={theme}>
         <div className="popup-container">
@@ -71,10 +54,6 @@ const LoginPopup: React.FC = () => {
     <Theme theme={theme}>
       <div className="popup-container">
         <LoginForm
-          email={loginState.email}
-          password={loginState.password}
-          onEmailChange={handleEmailChange}
-          onPasswordChange={handlePasswordChange}
           onEmailLogin={handleEmailLogin}
           onGitHubLogin={handleGitHubLogin}
         />
