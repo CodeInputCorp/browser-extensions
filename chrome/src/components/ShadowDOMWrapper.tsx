@@ -9,34 +9,18 @@ const shadowCSS = `
     box-sizing: border-box;
   }
   
-  /* Carbon tooltip styles - minimal subset */
-  .cds--tooltip {
-    position: absolute;
-    z-index: 9000;
-    background: #161616;
-    color: #f4f4f4;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
-    line-height: 1.33;
-    border-radius: 0.125rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    max-width: 16rem;
-    word-wrap: break-word;
+  /* Custom tooltip container */
+  .codeinput-tooltip-container {
+    position: relative;
+    display: inline-flex;
   }
   
-  .cds--tooltip--shown {
-    opacity: 1;
-  }
-  
-  .cds--tooltip--hidden {
-    opacity: 0;
-  }
-  
-  /* Carbon button styles for our icon */
+  /* Wrapper to match GitHub header layout */
   .codeinput-codeowners-wrapper {
     display: inline-flex;
     align-items: center;
     margin-left: 8px;
+    height: 100%;
   }
 
   .codeinput-codeowners-icon {
@@ -66,7 +50,21 @@ const shadowCSS = `
   }
 
   .codeinput-codeowners-tooltip {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 9000;
+    background: #161616;
+    color: #f4f4f4;
+    padding: 12px;
+    font-size: 12px;
+    line-height: 1.4;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     max-width: 280px;
+    min-width: 220px;
+    word-wrap: break-word;
+    border: 1px solid #393939;
   }
   
   .codeinput-tooltip-header {
@@ -75,17 +73,25 @@ const shadowCSS = `
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .codeinput-tooltip-content {
-    font-size: 12px;
-    line-height: 1.4;
-  }
-  
   .codeinput-tooltip-content div {
     margin-bottom: 4px;
   }
   
   .codeinput-tooltip-content div:last-child {
     margin-bottom: 0;
+  }
+
+  /* Tooltip arrow */
+  .codeinput-codeowners-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 12px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #161616;
   }
 `;
 
