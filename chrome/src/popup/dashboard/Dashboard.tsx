@@ -1,23 +1,24 @@
 import React from "react";
 import { Button, Grid, Column, Stack, Heading } from "@carbon/react";
-import { User, ColorPalette, Information, Logout } from "@carbon/icons-react";
+import { User, Settings, Information, Logout } from "@carbon/icons-react";
 import styles from "./Dashboard.module.scss";
 
 interface DashboardProps {
   onLogout: () => void;
+  onNavigate: (page: string) => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
+const Dashboard: React.FC<DashboardProps> = ({ onLogout, onNavigate }) => {
   const handleAccountClick = () => {
-    console.log("Account clicked");
+    onNavigate("account");
   };
 
-  const handleAppearanceClick = () => {
-    console.log("Appearance clicked");
+  const handleSettingsClick = () => {
+    onNavigate("settings");
   };
 
   const handleAboutClick = () => {
-    console.log("About clicked");
+    onNavigate("about");
   };
 
   return (
@@ -46,11 +47,11 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
               <Button
                 kind="ghost"
                 size="lg"
-                renderIcon={ColorPalette}
-                onClick={handleAppearanceClick}
+                renderIcon={Settings}
+                onClick={handleSettingsClick}
                 className={styles?.menuItem || ""}
               >
-                Appearance
+                Settings
               </Button>
 
               <Button

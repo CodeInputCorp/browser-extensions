@@ -1,0 +1,52 @@
+.settings {
+  width: 100%;
+  min-height: 400px;
+  
+  .header {
+    padding: 16px 0 24px 0;
+    border-bottom: 1px solid var(--cds-border-subtle);
+    margin-bottom: 24px;
+    
+    .backButton {
+      margin-bottom: 12px;
+    }
+    
+    .subtitle {
+      margin: 8px 0 0 0;
+      color: var(--cds-text-secondary);
+      font-size: 14px;
+    }
+  }
+  
+  .content {
+    .settingsTile {
+      margin-bottom: 16px;
+      
+      .settingItem {
+        .settingLabel {
+          display: block;
+          margin-bottom: 8px;
+          font-weight: 500;
+          color: var(--cds-text-primary);
+          font-size: 14px;
+        }
+        
+        .fontSizeValue {
+          display: block;
+          margin-top: 8px;
+          color: var(--cds-text-secondary);
+          font-size: 12px;
+          text-align: center;
+        }
+      }
+    }
+    
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--cds-border-subtle);
+    }
+  }
+}
