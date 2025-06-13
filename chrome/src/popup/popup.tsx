@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { 
   Button, 
@@ -26,6 +26,24 @@ const LoginPopup: React.FC = () => {
     isLoggedIn: false
   });
 
+  const [theme, setTheme] = useState<'white' | 'g10' | 'g90' | 'g100'>('white');
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(isDark ? 'g100' : 'white');
+    };
+
+    updateTheme();
+    
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', updateTheme);
+
+    return () => {
+      mediaQuery.removeEventListener('change', updateTheme);
+    };
+  }, []);
+
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLoginState(prev => ({ ...prev, email: event.target.value }));
   };
@@ -50,7 +68,7 @@ const LoginPopup: React.FC = () => {
 
   if (loginState.isLoggedIn) {
     return (
-      <Theme theme="g100">
+      <Theme theme={theme}>
         <div className="popup-container">
           <Tile className="success-tile">
             <Stack gap={4}>
@@ -67,7 +85,7 @@ const LoginPopup: React.FC = () => {
   }
 
   return (
-    <Theme theme="g100">
+    <Theme theme={theme}>
       <div className="popup-container">
         <Tile className="login-tile">
           <Stack gap={6}>
