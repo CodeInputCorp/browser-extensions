@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     background: "./src/background.ts",
     content: "./src/content.ts",
-    popup: "./src/popup/popup.ts",
+    popup: "./src/popup/popup.tsx",
   },
   output: {
     filename: "[name].js",
@@ -16,20 +16,28 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        use: {
+          loader: "ts-loader",
+          options: {
+            transpileOnly: true,
+          },
+        },
         exclude: /node_modules/,
+      },
+      {
+        test: /\.s?css$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".tsx", ".ts", ".js"],
   },
   plugins: [
     new CopyPlugin({
       patterns: [
         { from: "public", to: "." },
         { from: "src/popup/popup.html", to: "." },
-        { from: "src/popup/style.css", to: "." },
       ],
     }),
   ],

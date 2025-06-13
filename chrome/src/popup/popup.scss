@@ -1,0 +1,42 @@
+.popup-container {
+  width: 320px;
+  min-height: 400px;
+  padding: 16px;
+  
+  .login-tile {
+    padding: 24px;
+    
+    .divider {
+      position: relative;
+      text-align: center;
+      margin: 16px 0;
+      
+      &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: var(--cds-border-subtle);
+      }
+      
+      span {
+        background-color: var(--cds-background);
+        padding: 0 16px;
+        color: var(--cds-text-secondary);
+        font-size: 14px;
+      }
+    }
+  }
+  
+  .success-tile {
+    padding: 24px;
+    text-align: center;
+    
+    p {
+      color: var(--cds-text-secondary);
+      margin: 0;
+    }
+  }
+}

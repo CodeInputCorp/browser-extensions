@@ -4,14 +4,16 @@
 		"module": "ESNext",
 		"moduleResolution": "Node",
 		"esModuleInterop": true,
-		"strict": true,
+		"strict": false,
 		"sourceMap": true,
 		"outDir": "./dist",
-		"types": [
-			"chrome"
-		]
+		"jsx": "react-jsx",
+		"allowSyntheticDefaultImports": true,
+		"skipLibCheck": true,
+		"types": []
 	},
 	"include": [
-		"src/**/*.ts"
+		"src/**/*.ts",
+		"src/**/*.tsx"
 	]
 }
